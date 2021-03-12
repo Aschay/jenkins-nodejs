@@ -12,8 +12,7 @@ pipeline {
         }
         stage ('Test'){
             steps{
-             sh 'npm start'   
-             sh 'npm test'
+             sh 'npm test -- test/test'
             }
         }
     }
