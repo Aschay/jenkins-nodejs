@@ -1,7 +1,8 @@
 pipeline {
-    agent {
-       agent any
-    }
+    agent any
+    environment {
+        CI = 'true' 
+    }  
     stages {
         stage('Build') { 
             nodejs(nodeJSInstallationName: 'nodejs') {
