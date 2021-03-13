@@ -1,20 +1,42 @@
-node {
-   def commit_id
-   stage('pre-test') {
-     checkout scm
-     sh "git rev-parse --short HEAD > .git/commit-id"                        
-     commit_id = readFile('.git/commit-id').trim()
-   }
-   stage('test') {
-     nodejs(nodeJSInstallationName: 'nodejs') {
-       sh 'npm install --only=dev'
-       sh 'npm test -- test/test'
-       
-     }
-   }
-   stage('release') {
-     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
-       def app = docker.build("aschay/pip-nodejs:${commit_id}", '.').push()
-     }
-   }
+pipeline {
+
+    agent any
+    
+    environment {
+        CI = 'true' 
+    } 
+
+    tools {nodejs "nodejs"} 
+
+    stages {
+        stage('Build') { 
+            steps{
+             sh 'npm install'
+            }
+        }
+          stage('Run') { 
+            steps{
+             sh 'npm start & sleep 1m '
+             sh'echo $! > .pidfile' 
+            }
+        }
+        stage ('Test'){
+            steps{
+             sh 'npm test'
+             sh 'kill $(cat .pidfile)'
+            }
+        }
+        stage('Deliver') {
+            steps {
+                sh 'npm start '
+                sh'echo $! > .pidfile' 
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh 'kill $(cat .pidfile)'
+            }
+        }
+   
+    }
+    
 }
+
+
