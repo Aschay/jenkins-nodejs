@@ -14,16 +14,10 @@ pipeline {
              sh 'npm install'
             }
         }
-          stage('Run') { 
-            steps{
-             sh 'node app.js & sleep 1m '
-             sh'echo $! > .pidfile' 
-            }
-        }
         stage ('Test'){
             steps{
-             sh 'npm test'
-             sh 'kill $(cat .pidfile)'
+             sh 'npm start & npm test '
+             sh'echo $! > .pidfile'    
             }
         }
         stage('Deliver') {
