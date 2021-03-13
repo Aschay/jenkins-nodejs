@@ -9,10 +9,11 @@ node {
      nodejs(nodeJSInstallationName: 'nodejs') {
        sh 'npm install --only=dev'
        sh 'npm test -- test/test'
+       
      }
    }
    stage('release') {
-     docker.withRegistry('https://index.docker.io/v1/', 'docker-hub') {
+     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
        def app = docker.build("aschay/pip-nodejs:${commit_id}", '.').push()
      }
    }
