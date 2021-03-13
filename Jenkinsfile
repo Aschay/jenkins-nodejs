@@ -17,15 +17,15 @@ pipeline {
         stage ('Test'){
             steps{
              sh 'npm start & npm test '
-             sh'echo $! > .pidfile'    
+             sh 'kill $(echo $!)' 
             }
         }
         stage('Deliver') {
             steps {
                 sh 'npm start '
-                sh'echo $! > .pidfile' 
+                sh ' pid : echo $! ' 
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh 'kill $(cat .pidfile)'
+                sh ' kill $(echo $!) '
             }
         }
    
