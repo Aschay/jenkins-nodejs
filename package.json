@@ -5,8 +5,9 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-    "start" : "node app.js",
-    "test": "mocha --reporter spec"
+    "start": "node app.js",
+    "test": "mocha --reporter spec --exit",
+    "stop": "node app.stop.js"
   },
   "repository": {
     "type": "git",
@@ -24,11 +25,15 @@
   },
   "homepage": "https://github.com/Aschay/simple-nodejs-jenkins#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "mongoose": "^5.11.15",
+    "socket.io": "^4.0.0",
+    "socket.io-client": "^4.0.0"
   },
   "devDependencies": {
     "chai": "^4.3.3",
-    "mocha": "^8.3.1",
-    "request": "^2.88.2"
+    "mocha": "^8.3.2",
+    "supertest": "^6.1.3"
   }
 }
