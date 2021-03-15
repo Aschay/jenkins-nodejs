@@ -15,5 +15,4 @@ it('Any Other pages should return ', async () => {
       expect(res.status).to.equal(404);
       expect(res.text).to.equal('PAGE NOT FOUND');
 });
-done;
 });
