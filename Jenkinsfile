@@ -25,9 +25,9 @@ node {
      }                                   
      mongodb.stop()
    }                                     
-   stage('docker build/push') {            
-     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
-       def app = docker.build("aschay/pip-nodejs:${commit_id}", '.').push()
-     }                                     
-   }                                       
+  //  stage('docker build/push') {            
+  //    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
+  //      def app = docker.build("aschay/pip-nodejs:${commit_id}", '.').push()
+  //    }                                     
+  //  }                                       
 }                                          
