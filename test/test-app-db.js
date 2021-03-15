@@ -4,9 +4,9 @@ const Product = require("../models/Product");
 const app = require("../app-db");
 const mongoose = require('mongoose');
 const config = require('../config/config-db');
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.NODE_ENV || 'test';
 
-describe("api/products", () => {
+describe("api/products", async() => {
 
   before(async () => {
     await Product.find();
@@ -30,7 +30,7 @@ describe("api/products", () => {
       await mongoose.connect(config.db[env], config.dbParams);
   });
   
-  it('it should be able to find all the intialized datas', () => {
+  it('it should be able to find all the intialized datas', async() => {
         Product.findOne({ brand: 'Linux' })
             .then((p) => {
                 assert(p.brand === 'Linux'); 

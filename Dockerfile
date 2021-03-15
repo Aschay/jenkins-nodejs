@@ -4,4 +4,4 @@ WORKDIR /app
 ADD . /app
 RUN npm i -f
 EXPOSE 3000 3001
-CMD sleep 30s && node app-db.js
+CMD sleep 30s && npm test -- test/test-app-db.js
