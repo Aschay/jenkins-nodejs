@@ -22,7 +22,7 @@ node {
     //         sh 'while ! mongo ping -hdb --silent; do sleep 1; done'
     //     }
      def mongodb = docker.image('mongo:latest').run(" -e MONGO_INITDB_DATABASE=nodedb -p 27017:27017 -v /mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro ")
-      appdbContainer.inside() { 
+      mongodb.inside() { 
           sh 'mongo && show dbs; && db.products.find();' 
                              
      }     
