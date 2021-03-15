@@ -3,7 +3,7 @@ module.exports = {
     db: {
       production: "mongodb://user:pass@example.com:1234/nodedb",
       development: "mongodb://localhost/nodedb",
-      test: "mongodb://localhost:27017/nodedb",
+      test: "mongodb://db:27017/nodedb",
     },
     dbParams: {
         useNewUrlParser: true,
