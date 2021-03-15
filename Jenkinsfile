@@ -21,7 +21,11 @@ node {
     //         /* Wait until mongo service is up */
     //         sh 'while ! mongo ping -hdb --silent; do sleep 1; done'
     //     }
-     def mongodb = docker.image('mongo:latest').run(" -e MONGO_INITDB_DATABASE=nodedb -p 27017:27017 -v /mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro ") 
+     def mongodb = docker.image('mongo:latest').run(" -e MONGO_INITDB_DATABASE=nodedb -p 27017:27017 -v /mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro ")
+      appdbContainer.inside() { 
+          sh 'mongo && show dbs; && db.products.find();' 
+                             
+     }     
     //  def appdbContainer = docker.image('node:14.16.0-alpine3.10')
     //  appdbContainer.pull()
     //  appdbContainer.inside("--link ${c.id}:db") { 
