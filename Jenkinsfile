@@ -7,7 +7,7 @@ node {
       appdbContainer.pull()
       appdbContainer.inside(" --link db:mongo ") { 
            sh 'npm i' 
-           sh 'npm test -- test/test-app-db'                     
+           sh 'npm test -- test/test-app-db --timeout 10000'                     
       }                                   
      db.stop()
    }                                     
