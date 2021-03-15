@@ -18,10 +18,10 @@ describe("api/products", async() => {
 
   it("should connect and disconnect to mongodb", async () => {
       mongoose.disconnect();
-      mongoose.connection.on('disconnected', () => {
+      mongoose.connection.on('disconnected',async () => {
         expect(mongoose.connection.readyState).to.equal(0);
       });
-      mongoose.connection.on('connected', () => {
+      mongoose.connection.on('connected', async() => {
         expect(mongoose.connection.readyState).to.equal(1);
       });
   //     // mongoose.connection.on('error', () => {
