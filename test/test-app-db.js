@@ -16,8 +16,8 @@ describe("api/products", async() => {
     mongoose.disconnect();
   });
 
-  it("should connect and disconnect to mongodb", async () => {
-      mongoose.disconnect();
+  it("should connect  to mongodb", async () => {
+     // mongoose.disconnect();
       mongoose.connection.on('disconnected',async () => {
         const result = await resolvingPromise;
         expect(result).to.equal('promise resolved'); 
