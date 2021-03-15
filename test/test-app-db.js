@@ -18,16 +18,16 @@ describe("api/products", async() => {
 
   it("should connect  to mongodb", async () => {
      // mongoose.disconnect();
-      mongoose.connection.on('disconnected',async () => {
-        const result = await resolvingPromise;
-        expect(result).to.equal('promise resolved'); 
-        expect(mongoose.connection.readyState).to.equal(0);
-      });
-      mongoose.connection.on('connected', async() => {
-        const result = await resolvingPromise;
-        expect(result).to.equal('promise resolved'); 
-        expect(mongoose.connection.readyState).to.equal(1);
-      });
+      // mongoose.connection.on('disconnected',async () => {
+      //   const result = await resolvingPromise;
+      //   expect(result).to.equal('promise resolved'); 
+      //   expect(mongoose.connection.readyState).to.equal(0);
+      // });
+      // mongoose.connection.on('connected', async() => {
+      //   const result = await resolvingPromise;
+      //   expect(result).to.equal('promise resolved'); 
+      //   expect(mongoose.connection.readyState).to.equal(1);
+      // });
   //     // mongoose.connection.on('error', () => {
   //     //   expect(mongoose.connection.readyState).to.equal(99);
   //     // });
