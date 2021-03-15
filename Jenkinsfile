@@ -9,7 +9,7 @@ node {
      def testContainer = docker.image('node:14.16.0-alpine3.10')
      testContainer.pull()
      testContainer.inside {
-       sh 'npm install --only=dev'
+       sh 'npm ci --only=dev'
        sh 'npm test -- test/test-app'
      }
    }
@@ -20,7 +20,7 @@ node {
      def appdbContainer = docker.image('node:14.16.0-alpine3.10')
      appdbContainer.pull()
      appdbContainer.inside("--link ${mongodb.id}:mongo") { 
-          sh 'npm install --only=dev' 
+          sh 'npm ci --only=dev' 
           sh 'npm test -- test/test-app-db'                     
      }                                   
      mongodb.stop()
