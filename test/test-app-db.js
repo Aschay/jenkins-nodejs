@@ -4,7 +4,7 @@ const Product = require("../models/Product");
 const app = require("../app-db");
 const mongoose = require('mongoose');
 const config = require('../config/config-db');
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.NODE_ENV || 'test';
 
 describe("api/products", async() => {
 
