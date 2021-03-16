@@ -9,7 +9,7 @@ const env = process.env.NODE_ENV || 'test';
 describe("api/products", async() => {
 
   before(async () => {
-    await  mongoose.connect(config.db[env], config.dbParams);
+    await mongoose.connect(config.db[env], config.dbParams);
     await Product.find();
     
   });
@@ -17,23 +17,19 @@ describe("api/products", async() => {
     mongoose.disconnect();
   });
 
-  // it("should connect  to mongodb", async () => {
-  //    // mongoose.disconnect();
-  //     // mongoose.connection.on('disconnected',async () => {
-  //     //   const result = await resolvingPromise;
-  //     //   expect(result).to.equal('promise resolved'); 
-  //     //   expect(mongoose.connection.readyState).to.equal(0);
-  //     // });
-  //     // mongoose.connection.on('connected', async() => {
-  //     //   const result = await resolvingPromise;
-  //     //   expect(result).to.equal('promise resolved'); 
-  //     //   expect(mongoose.connection.readyState).to.equal(1);
-  //     // });
-  // //     // mongoose.connection.on('error', () => {
-  // //     //   expect(mongoose.connection.readyState).to.equal(99);
-  // //     // });
-  //      await mongoose.connect(config.db[env], config.dbParams);
-  // });
+  it("should connect and disconnect to mongodb", async () => {
+      mongoose.disconnect();
+      mongoose.connection.on('disconnected',async () => {
+        expect(mongoose.connection.readyState).to.equal(0);
+      });
+      mongoose.connection.on('connected', async() => {
+        expect(mongoose.connection.readyState).to.equal(1);
+      });
+       // mongoose.connection.on('error', () => {
+       //   expect(mongoose.connection.readyState).to.equal(99);
+       // });
+       await mongoose.connect(config.db[env], config.dbParams);
+  });
   
   it('it should be able to find all the intialized datas', async() => {
         Product.findOne({ brand: 'Linux' })
