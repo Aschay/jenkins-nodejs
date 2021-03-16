@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  db:
+    image: mongo
+    container_name: db
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro 
+    ports:
+      - 27017:27017
+  web:
+    depends_on: 
+      - db
+    build:
+      context: .
+      dockerfile: v-1.Dockerfile
+    ports:
+      - 3001:3001
+    container_name: app2

@@ -4,4 +4,4 @@ WORKDIR /app
 ADD . /app
 RUN npm i -f
 EXPOSE 3000 
-CMD  node app-db.js
+CMD  node app.js
