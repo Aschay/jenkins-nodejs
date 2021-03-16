@@ -4,15 +4,16 @@ const Product = require("../models/Product");
 const app = require("../app-db");
 const mongoose = require('mongoose');
 const config = require('../config/config-db');
-const env = process.env.NODE_ENV || 'test';
+const env = process.env.NODE_ENV || 'development';
 
 describe("api/products", async() => {
 
   before(async () => {
-    await mongoose.connect(config.db[env], config.dbParams);
     await Product.find();
-    
+     
   });
+    
+ 
   after(async () => {
     mongoose.disconnect();
   });
@@ -50,7 +51,7 @@ describe("api/products", async() => {
       await Product.find();
       const res = await request(app).get("/api/products");
       expect(res.status).to.equal(200);
-      expect(res.body.length).to.equal(3);
+      expect(res.body.length).to.equal(1);
     });
 
     it('any other page should return 404 ',async () => {

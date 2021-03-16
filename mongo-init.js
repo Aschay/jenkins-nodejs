@@ -1,12 +1,9 @@
-print('intialization #########################');
-
-db = db.getSiblingDB('nodedb');
+db = db.getSiblingDB('nodedb')
 db.createUser({
-    user: 'user',
-    pwd: 'user',
-    roles: [{ role: 'readWrite', db: 'nodedb' }],
-}, );
-
+  user: 'test-user',
+  pwd: 'test-password',
+  roles: [ { role: 'readWrite', db: 'nodedb',},],
+});
 db.products.drop();
 db.products.insert({
     "brand": "Linux",
@@ -20,6 +17,3 @@ db.products.insert({
     "brand": "kubernetes",
     "serviceTag": "K8S"
 })
-
-
-print('END ###################################');
