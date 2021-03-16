@@ -51,7 +51,7 @@ describe("api/products", async() => {
       await Product.find();
       const res = await request(app).get("/api/products");
       expect(res.status).to.equal(200);
-      expect(res.body.length).to.equal();
+      expect(res.body.length).to.equal(3);
     });
 
     it('any other page should return 404 ',async () => {
