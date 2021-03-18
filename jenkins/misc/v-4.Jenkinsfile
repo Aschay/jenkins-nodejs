@@ -8,4 +8,11 @@ pipeline {
         additionalBuildArgs  '--build-arg version=1.0'
     }
   }
+  stages {
+        stage('Build') {
+            steps {
+                sh 'npm install'
+            }
+        }
+    }
 }
