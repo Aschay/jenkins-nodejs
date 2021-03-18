@@ -4,8 +4,19 @@ pipeline{
     dockerfile {
         filename 'v-1.Dockerfile'
         dir '.'
-        label 'app-db'
         additionalBuildArgs  '--build-arg version=1.0'
     }
   }
+   stages {
+        stage('Build') {
+            steps {
+                sh 'npm install'
+            }
+        }
+    }
+    post { 
+        always { 
+            echo 'I will always say Hello again!'
+        }
+    }
 }

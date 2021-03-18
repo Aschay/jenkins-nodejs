@@ -4,7 +4,6 @@ pipeline {
     dockerfile {
         filename 'v-0.Dockerfile'
         dir '.'
-        label 'app'
         additionalBuildArgs  '--build-arg version=1.0'
     }
   }
@@ -13,6 +12,11 @@ pipeline {
             steps {
                 sh 'npm install'
             }
+        }
+    }
+ post { 
+        always { 
+            echo 'I will always say Hello again!'
         }
     }
 }
