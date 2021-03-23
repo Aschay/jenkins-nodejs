@@ -6,7 +6,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "mocha --reporter spec --exit  --timeout 15000 ",
+    "test": "mocha --reporter spec  --timeout 15000 --exit ",
     "stop": "node app.stop.js"
   },
   "repository": {
