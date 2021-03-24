@@ -1,0 +1,35 @@
+version: '2'
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    networks:
+      - jenkins
+    environment:
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: sonar
+    volumes:
+      - /var/postgres-data:/var/lib/postgresql/data
+      - postgresql:/var/lib/postgresql
+  sonarqube: # I got issue with sonarqube working with in docker wsl2 had to do : wsl -d docker-desktop && sysctl -w vm.max_map_count=262144
+    image: sonarqube:lts
+    container_name: sonarqube
+    restart: always
+    ports:
+      - "9000:9000"
+      - "9092:9092"
+    networks:
+      - jenkins
+    environment:
+      SONAR_JDBC_URL: jdbc:postgresql://db:5432/sonar
+      SONAR_JDBC_USERNAME: sonar
+      SONAR_JDBC_PASSWORD: sonar
+    depends_on: 
+      - postgres
+networks:
+  jenkins:
+volumes:
+  postgresql:
+
+
