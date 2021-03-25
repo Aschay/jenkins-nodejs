@@ -1,5 +1,5 @@
 const express = require('express');
-app= express();
+const app= express();
 const http =require('http');
 const config = require('./config/config-db');
 const env = process.env.NODE_ENV || 'test';
