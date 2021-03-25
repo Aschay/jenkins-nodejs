@@ -20,4 +20,3 @@ socketClient2.on('connect', () => {
   }, 1000);}
   
 });
-//module.exports = stop;  

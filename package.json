@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node app.js",
     "test": "mocha --reporter spec  --timeout 15000 --exit ",
-    "stop": "node app.stop.js"
+    "stop": "node app.stop.js",
+    "sonar": "node sonar-project.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,7 @@
   "devDependencies": {
     "chai": "^4.3.3",
     "mocha": "^8.3.2",
+    "sonarqube-scanner": "^2.8.0",
     "supertest": "^6.1.3"
   }
 }

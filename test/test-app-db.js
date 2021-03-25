@@ -9,7 +9,8 @@ const env = process.env.NODE_ENV || 'test';
 describe("api/products", async() => {
 
   before(async () => {
-    await Product.find();
+   let p = new Promise(resolve => resolve( Product.find()));
+   await p;
      
   });
     
@@ -26,9 +27,6 @@ describe("api/products", async() => {
       mongoose.connection.on('connected', async() => {
         expect(mongoose.connection.readyState).to.equal(1);
       });
-       // mongoose.connection.on('error', () => {
-       //   expect(mongoose.connection.readyState).to.equal(99);
-       // });
        await mongoose.connect(config.db[env], config.dbParams);
   });
   
@@ -48,7 +46,8 @@ describe("api/products", async() => {
         });
 
     it('should return all products', async () => {
-      await Product.find();
+      let p = new Promise(resolve => resolve( Product.find()));
+      await p;
       const res = await request(app).get("/api/products");
       expect(res.status).to.equal(200);
       expect(res.body.length).to.equal(3);
