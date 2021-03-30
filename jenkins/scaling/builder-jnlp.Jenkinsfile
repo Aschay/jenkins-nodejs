@@ -14,7 +14,7 @@ pipeline {
                 label 'builder-jnlp'
             }
             steps {
-                bat 'echo hello from slave node '
+                bat 'echo "hello from slave node" '
             }
            
         }

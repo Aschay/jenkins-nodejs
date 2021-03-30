@@ -14,7 +14,7 @@ pipeline {
                 label 'builder-ssh'
             }
             steps {
-                bat 'echo hello from slave node '
+                sh 'echo "hello from slave node" '
             }
            
         }
