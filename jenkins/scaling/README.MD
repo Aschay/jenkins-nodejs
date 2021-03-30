@@ -1,7 +1,7 @@
 ### Steps to create jenkins slave and connect it to master via ssh connection : 
 
 ### 1.create a pair of private/public key in jenkins 
-ssh-keygen 
+````ssh-keygen ````
 ### 2.create a slave container 
 ````docker run --name slave -d  jenkins/ssh-agent:alpine  "your_public_key" ````
 ### 3.configure jenkins to add the node from UI 
