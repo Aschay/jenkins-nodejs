@@ -1,7 +1,7 @@
 node {
     def appContainer = docker.image('node:14.16.0-alpine3.10')
     appContainer.pull()
-    stage('cloning repo') {
+    stage('cloning-repo') {
         git url: 'https://github.com/Aschay/simple-nodejs-jenkins.git'
     }
     stage('build') {
