@@ -20,7 +20,7 @@ node {
     }
     
     stage ('Publish') {
-        rtNpm.publish buildInfo: buildInfo, path: 'npm-example'
+        rtNpm.publish buildInfo: buildInfo
     }
 
     stage ('Publish-build-info') {
